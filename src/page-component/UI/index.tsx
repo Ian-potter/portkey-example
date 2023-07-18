@@ -12,26 +12,17 @@ import {
 import { ChainId } from "@portkey/types";
 import { sleep } from "@portkey/utils";
 import { Store } from "@/utils";
-import './index.css';
+import "./index.css";
 
 const PIN = "111111";
 let CHAIN_ID: ChainId = "AELF";
 
 const myStore = new Store();
 ConfigProvider.setGlobalConfig({
-  connectUrl: "https://auth-portkey-test.portkey.finance",
   storageMethod: myStore,
-  socketUrl: "https://did-portkey-test.portkey.finance/ca",
   requestDefaults: {
     timeout: 30000,
-    baseURL: "/",
   },
-  /** By default, reCaptcha's siteKey of portkey is used, if it is a self-built service, please use your own siteKey */
-  // reCaptchaConfig: {
-  //   siteKey: '',
-  // },
-  graphQLUrl:
-    "https://dapp-portkey-test.portkey.finance/Portkey_DID/PortKeyIndexerCASchema/graphql",
 });
 
 export default function UI() {
@@ -44,8 +35,9 @@ export default function UI() {
     <div>
       <div id="wrapper"></div>
       <div>
-        <h2>design</h2>
+        <h2 className="title">design</h2>
         <button
+          className="blue"
           onClick={async () => {
             setDesign("CryptoDesign");
             await sleep(50);
@@ -72,15 +64,16 @@ export default function UI() {
       </div>
 
       <div>
-        <h2>uiType</h2>
+        <h2 className="title">uiType</h2>
         <button onClick={() => setUIType("Modal")}>Modal</button>
         <button onClick={() => setUIType("Full")}>Full</button>
       </div>
       <div>
-        <h2>DIDWalletInfo</h2>
+        <h2 className="title">DIDWalletInfo</h2>
         {wallet && (
           <>
-            <div>{JSON.stringify(wallet)}</div>
+            <div className="">WalletInfo:{JSON.stringify(wallet.caInfo)}</div>
+            <div>ChainId:{JSON.stringify(wallet.chainId)}</div>
             <button
               onClick={async () => {
                 // Mock pin: 111111
@@ -100,7 +93,6 @@ export default function UI() {
         design={design}
         uiType={uiType}
         getContainer="#wrapper"
-        isShowScan
         className="sign-in-wrapper"
         termsOfService={"https://portkey.finance/terms-of-service"}
         onFinish={async (res) => {

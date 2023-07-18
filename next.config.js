@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const rewrites = require('./rewrites');
+const nextConfig = {
+    async rewrites() {
+        return rewrites;
+    },
+}
 
 module.exports = nextConfig
