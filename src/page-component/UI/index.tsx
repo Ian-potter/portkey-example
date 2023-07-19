@@ -12,6 +12,8 @@ import {
 import { ChainId } from "@portkey/types";
 import { sleep } from "@portkey/utils";
 import { Store } from "@/utils";
+import { Button } from "antd";
+import "antd/dist/antd.css";
 import "./index.css";
 
 const PIN = "111111";
@@ -36,37 +38,43 @@ export default function UI() {
       <div id="wrapper"></div>
       <div>
         <h2 className="title">design</h2>
-        <button
-          className="blue"
+        <Button
+          type="primary"
           onClick={async () => {
             setDesign("CryptoDesign");
             await sleep(50);
             ref.current?.setOpen(true);
           }}>
           CryptoDesign
-        </button>
-        <button
+        </Button>
+        <Button
+          type="primary"
           onClick={async () => {
             setDesign("SocialDesign");
             await sleep(50);
             ref.current?.setOpen(true);
           }}>
           SocialDesign
-        </button>
-        <button
+        </Button>
+        <Button
+          type="primary"
           onClick={async () => {
             setDesign("Web2Design");
             await sleep(50);
             ref.current?.setOpen(true);
           }}>
           Web2Design
-        </button>
+        </Button>
       </div>
 
       <div>
         <h2 className="title">uiType</h2>
-        <button onClick={() => setUIType("Modal")}>Modal</button>
-        <button onClick={() => setUIType("Full")}>Full</button>
+        <Button type="primary" onClick={() => setUIType("Modal")}>
+          Modal
+        </Button>
+        <Button type="primary" onClick={() => setUIType("Full")}>
+          Full
+        </Button>
       </div>
       <div>
         <h2 className="title">DIDWalletInfo</h2>
@@ -74,7 +82,8 @@ export default function UI() {
           <>
             <div className="">WalletInfo:{JSON.stringify(wallet.caInfo)}</div>
             <div>ChainId:{JSON.stringify(wallet.chainId)}</div>
-            <button
+            <Button
+              type="primary"
               onClick={async () => {
                 // Mock pin: 111111
                 const wallet = await did.load(PIN);
@@ -83,7 +92,7 @@ export default function UI() {
                 did.logout({ chainId: CHAIN_ID });
               }}>
               logout
-            </button>
+            </Button>
           </>
         )}
       </div>
