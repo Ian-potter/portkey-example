@@ -90,6 +90,7 @@ export default function UI() {
                 console.log("wallet:", wallet);
                 // Mock chainId: 'AELF'
                 did.logout({ chainId: CHAIN_ID });
+                setWallet(undefined);
               }}>
               logout
             </Button>
