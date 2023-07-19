@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { PortkeyProvider } from "@portkey/did-ui-react";
 import "@portkey/did-ui-react/dist/assets/index.css";
-import "./index.css";
 import UI from "@/page-component/UI";
+import "./index.css";
 
 export default function Home() {
-  const [dark, setDark] = useState<boolean>(true);
+  const [dark, setDark] = useState<boolean>(false);
 
   useEffect(() => {
     if (dark) {
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-auto">
-        <h1>@portkey/did-ui-react</h1>
+        <h1 className="text-lg">@portkey/did-ui-react</h1>
         <PortkeyProvider
           networkType={"TESTNET"}
           theme={dark ? "dark" : "light"}>
@@ -26,7 +26,7 @@ export default function Home() {
             style={{ background: dark ? "#1E212B" : "#fff" }}
             id={dark ? "dark-root" : undefined}>
             <h2
-              className="text-rose-600 text-base mb-10 cursor-pointer title"
+              className=" mb-10 cursor-pointer title"
               onClick={async () => {
                 setDark((v) => !v);
               }}>
